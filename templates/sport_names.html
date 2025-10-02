@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+  {% if sports %}
+    <ul>
+      {% for name in sports %}
+        <li><p>{{ name }}</p></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There is no sports D:</p>
+    <p>Would you like to make <a href="{{ url_for('add_sports') }}">one</a>?</p>
+  {% endif %}
+{% endblock %}
