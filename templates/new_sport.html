@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>List of Supported Sports:</h1>
+  <ul>
+    {% for sport in sports %}
+      <li>
+        <h3>{{ sport.name }}</h3>
+        <form action="/new_sport" method="post">
+          <input name="id" value="{{ sport.id }}" type="hidden">
+          <button type="submit">Add Sport</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
