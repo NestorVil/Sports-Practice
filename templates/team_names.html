@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  {% if teams %}
+    {% for team in teams %}
+      <p>{{ team.name }}</p>
+    {% endfor %}
+  {% else %}
+    <p>You have made no teams for this sport. Please make a unique <a href="{{ url_for('add_new_team', sport_id=sport_id) }}">teamname</a>.</p>
+  {% endif %}
+{% endblock %}

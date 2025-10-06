@@ -18,3 +18,10 @@ INSERT INTO sports ("name", is_active) VALUES
     ('Softball', false),
     ('Lacrosse', false)
 ;
+
+CREATE TABLE teams (
+    id serial PRIMARY KEY,
+    "name" varchar(20) NOT NULL UNIQUE,
+    sport_id integer NOT NULL REFERENCES sports (id),
+    UNIQUE (id, sport_id)
+);

@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <form action="{{ url_for('create_team', sport_id=sport_id) }}" method="post">
+    <input autocomplete="off" name="team_name" placeholder="New Team Name" type="text">
+    <!-- Idk if the the following line is needed:  -->
+    <!-- <input name="id" value="{{ sport_id }}" type="hidden"> --> 
+    <button type="submit">Save</button>
+    <a href="{{ url_for('index') }}">Cancel</a>
+  </form>
+{% endblock %}

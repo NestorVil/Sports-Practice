@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
-{% block title %}Homepage{% endblock %}
+{% block title %}O{% endblock %}
 
 {% block content %}
   {% if sports %}
     <ul>
       {% for sport in sports %}
-        <li><p>{{ sport.name }}</p></li>
+        <li><p><a href="{{ url_for('team', sport_id=sport.id) }}">{{ sport.name }}</a></p></li>
         <form action="{{ url_for('delete_sport', sport_id=sport.id) }}" method="post">
           <button type="submit">Remove this Sport</button>
         </form>
