@@ -22,6 +22,7 @@ INSERT INTO sports ("name", is_active) VALUES
 CREATE TABLE teams (
     id serial PRIMARY KEY,
     "name" varchar(20) NOT NULL UNIQUE,
-    sport_id integer NOT NULL REFERENCES sports (id),
+    sport_id integer NOT NULL REFERENCES sports (id) ON DELETE CASCADE,
     UNIQUE (id, sport_id)
 );
+

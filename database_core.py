@@ -55,17 +55,26 @@ class DatabaseCore():
                     sport_id = str(sport_id)
                     cursor.execute(sql, (sport_id,))
 
-    def get_teams(self):
+    def get_teams(self, sport_id):
         with self._connection_manager() as connection:
             with connection.cursor(cursor_factory=extras.DictCursor) as cursor:
-                cursor.execute("SELECT * FROM teams ORDER BY name;")
+                sql = """
+                SELECT teams.id as team_id, 
+                teams.name as team_name, 
+                sports.id as sport_id, 
+                sports.name as sport_name 
+                FROM teams, sports WHERE teams.sport_id = sports.id 
+                AND sports.id = %s;
+                """
+                cursor.execute(sql, (sport_id,))
                 rows = cursor.fetchall()
         
         return rows
     
     def add_team(self, team_name, sport_id):
-        teams = self.get_teams()
-        if team_name in (team['name'] for team in teams):
+        teams = self.get_teams(sport_id)
+        print(teams)
+        if team_name in (team['team_name'] for team in teams):
             return None
         
         with self._connection_manager() as connection:

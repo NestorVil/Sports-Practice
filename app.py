@@ -32,11 +32,11 @@ def delete_sport(sport_id):
 
 @app.route("/sports/<int:sport_id>/")
 def team(sport_id):
-    sports = g .storage.get_sports() 
+    sports = g.storage.get_sports() 
     if sport_id not in (sport['id'] for sport in sports if sport['is_active']):
         return abort(404)
 
-    teams = g.storage.get_teams()
+    teams = g.storage.get_teams(sport_id)
     return render_template('team_names.html', teams=teams, sport_id=sport_id)
 
 @app.route("/sports/<int:sport_id>/add_team")
