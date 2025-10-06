@@ -7,7 +7,11 @@
     <ul>
       {% for sport in sports %}
         <li><p>{{ sport.name }}</p></li>
+        <form action="{{ url_for('delete_sport', sport_id=sport.id) }}" method="post">
+          <button type="submit">Remove this Sport</button>
+        </form>
       {% endfor %}
+      <p>Would you like to add <a href="{{ url_for('add_sports') }}">more</a> sports?</p>
     </ul>
   {% else %}
     <p>There are no sports D:</p>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g, redirect, request
+from flask import Flask, render_template, g, redirect, request, url_for
 from database_core import DatabaseCore
 
 app = Flask(__name__)
@@ -25,6 +25,11 @@ def new_sport():
     g.storage.add_sports(sport_id)
     return redirect('/')
 
+@app.route("/sports/<int:sport_id>/delete", methods=["POST"])
+def delete_sport(sport_id):
+    g.storage.remove_sport(sport_id)
+    # Potentional Flash message
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(debug=True, port=5003)
